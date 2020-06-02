@@ -16,8 +16,14 @@
 
 package com.applivery.applvsdklib.ui.views.update;
 
+import android.app.Activity;
+import android.content.Context;
+
 import com.applivery.applvsdklib.AppliverySdk;
 import com.applivery.applvsdklib.ui.model.UpdateInfo;
+import com.applivery.base.AppliveryLifecycleCallbacks;
+import com.applivery.base.util.AppliveryContentProvider;
+import com.applivery.updates.presentation.AppliveryUpdateActivity;
 
 /**
  * Created by Sergio Martinez Rodriguez
@@ -49,13 +55,18 @@ public class UpdateViewPresenter {
   }
 
   public void showSuggestedUpdate(String appName, String updateMessage) {
-    if (AppliverySdk.isContextAvailable()) {
-      UpdateInfo updateInfo = new UpdateInfo(appName, updateMessage);
-      this.updateView = new SuggestedUpdateViewImpl(updateInfo, updateListener);
-      this.updateListener.setUpdateView(updateView);
-      if (!this.updateView.isActive()) {
-        this.updateView.showUpdateDialog();
-      }
-    }
+
+    Activity context= AppliveryLifecycleCallbacks.Companion.getActivity();
+    AppliveryUpdateActivity.Companion.open(context);
+
+
+//    if (AppliverySdk.isContextAvailable()) {
+//      UpdateInfo updateInfo = new UpdateInfo(appName, updateMessage);
+//      this.updateView = new SuggestedUpdateViewImpl(updateInfo, updateListener);
+//      this.updateListener.setUpdateView(updateView);
+//      if (!this.updateView.isActive()) {
+//        this.updateView.showUpdateDialog();
+//      }
+//    }
   }
 }

@@ -6,6 +6,10 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application>
+        <activity
+            android:name=".presentation.AppliveryUpdateActivity"
+            android:theme="@style/AppliveryTheme.Transparent" />
+
         <service android:name=".DownloadService" />
 
         <provider
@@ -13,10 +17,10 @@
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
-
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/applivery_provider_paths" />
         </provider>
     </application>
+
 </manifest>
